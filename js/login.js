@@ -32,6 +32,6 @@ document.getElementById('submit').addEventListener('click', async (e) => {
         localStorage.setItem('refresh_token', data.data.RefreshToken)
         localStorage.setItem('idToken', data.data.IdToken)
 
-        location.replace("http://localhost:8080/profile")
+        location.replace("https://solarus.club/profile")
     }
 })

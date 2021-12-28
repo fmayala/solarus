@@ -138,5 +138,5 @@ document.getElementById('logout').addEventListener('click', (e) => {
     localStorage.removeItem('refresh_token')
     localStorage.removeItem('idToken')
 
-    location.replace("http://localhost:8080/")
+    location.replace("https://solarus.club")
 })
