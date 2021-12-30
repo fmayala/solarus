@@ -97,6 +97,15 @@ document.getElementById('submit').addEventListener('click', async (e) => {
   e.preventDefault();
 
 
+  if (pw.value == "" || pwc.value == "" || email.value == "" || user.value == "") {
+    pwE.textContent = 'Please enter a valid password. Your password must contain at least 1 of each of the following: uppercase, lowercase, special, and number character'
+    pwcE.textContent = 'Your passwords do not match!'
+    emailE.textContent = 'Please enter a valid email.'
+    userE.textContent = 'Please enter a valid username.'
+    document.getElementById('onetapError').textContent = "Username cannot be empty."
+    return
+  }
+
   if (!pwerror && !eerror && !usererror) {
     let formData = new FormData();
     formData.append('username', user.value);
@@ -107,9 +116,8 @@ document.getElementById('submit').addEventListener('click', async (e) => {
 
     const data = await signupJSON(formData);
 
-    if (data.status == 400) {
-      console.log("hi")
-      //location.replace("https://solarus.club/verify?email=" + email.value)
+    if (data.status == 200) {
+      location.replace("https://solarus.club/verify?email=" + email.value)
     }
 
     console.log(data)
