@@ -53,7 +53,7 @@ email.addEventListener('input', (e) => {
 })
 
 user.addEventListener('input', (e) => {
-  if (!userreg.test(user.value) || user.value.length < 4) {
+  if (!userreg.test(user.value) || user.value.length < 4 || user.value.length > 22) {
     userE.textContent = 'Please enter a valid username.'
     usererror = true
   } else {
@@ -96,17 +96,34 @@ async function signupJSON(formdata) {
 document.getElementById('submit').addEventListener('click', async (e) => {
   e.preventDefault();
 
+  let globalerror = false;
 
-  if (pw.value == "" || pwc.value == "" || email.value == "" || user.value == "") {
+  if (pw.value == "" || !passreg.test(pw.value)) {
     pwE.textContent = 'Please enter a valid password. Your password must contain at least 1 of each of the following: uppercase, lowercase, special, and number character'
-    pwcE.textContent = 'Your passwords do not match!'
-    emailE.textContent = 'Please enter a valid email.'
-    userE.textContent = 'Please enter a valid username.'
-    document.getElementById('onetapError').textContent = "Username cannot be empty."
-    return
+    globalerror = true;
   }
 
-  if (!pwerror && !eerror && !usererror) {
+  if (pwc.value != pw.value) {
+    pwcE.textContent = 'Your passwords do not match!'
+    globalerror = true;
+  }
+
+  if (email.value == "" || !emailreg.test(email.value)) {
+    emailE.textContent = 'Please enter a valid email.'
+    globalerror = true;
+  }
+
+  if (user.value == "" && user.length > 22) {
+    userE.textContent = 'Please enter a valid username.'
+    globalerror = true;
+  }
+
+  if (otUsername.value == "") {
+    document.getElementById('onetapError').textContent = "Username cannot be empty."
+    globalerror = true;
+  }
+
+  if (!pwerror && !eerror && !usererror && !globalerror) {
     let formData = new FormData();
     formData.append('username', user.value);
     formData.append('password', pw.value);
