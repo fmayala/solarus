@@ -40,6 +40,8 @@ let username = document.getElementById('username')
 let msince = document.getElementById('membersince')
 let uid = document.getElementById('uid')
 let us = document.getElementById('topUser')
+let role = document.getElementById('role')
+let em = document.getElementById('email')
 
 // Initial hash
 //location.hash = "#user"
@@ -54,6 +56,7 @@ window.onload = async function () {
         var avid = "";
         var otuser = "";
         var discuser = ""
+        var email = ""
 
         // Search through keys until discord username is found.
         for (var i = 0; i < res.data.data_attributes.length; i++) {
@@ -82,6 +85,13 @@ window.onload = async function () {
             }
         }
 
+        for (var i = 0; i < res.data.data_attributes.length; i++) {
+            if (res.data.data_attributes[i].Name == 'email') {
+                email = res.data.data_attributes[i].Value
+                break;
+            }
+        }
+
 
 
         localStorage.setItem('username', res.data.data_username)
@@ -100,6 +110,8 @@ window.onload = async function () {
         us.textContent = res.data.data_username
         username.textContent = res.data.data_username
         uid.textContent = res.data.data_id
+        role.textContent = res.data.data_role
+        em.textContent = email
 
         if (did != "" && avid != "") {
             document.getElementById('discAvatar').src = 'https://cdn.discordapp.com/avatars/' + did + '/' + avid
