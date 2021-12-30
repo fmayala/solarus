@@ -113,7 +113,7 @@ document.getElementById('submit').addEventListener('click', async (e) => {
     globalerror = true;
   }
 
-  if (user.value == "" && user.length > 22) {
+  if (user.value == "" || user.value.length > 22 || user.value.length < 4) {
     userE.textContent = 'Please enter a valid username.'
     globalerror = true;
   }
