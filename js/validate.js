@@ -108,7 +108,7 @@ document.getElementById('submit').addEventListener('click', async (e) => {
     const data = await signupJSON(formData);
 
     if (data.message = 'Successfully signed up.') {
-      location.replace("https://solarus.club/verify?email=" + email.value)
+      //location.replace("https://solarus.club/verify?email=" + email.value)
     }
 
     console.log(data)
