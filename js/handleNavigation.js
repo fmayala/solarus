@@ -5,6 +5,7 @@ let refinfo = document.getElementById('referralInfoBtn')
 // Tabs
 let userBox = document.getElementById('profile')
 let subBox = document.getElementById('subscription')
+let refBox = document.getElementById('referrals')
 
 usinfo.addEventListener('click', (e) => {
     e.target.classList.add('bg-Third')
@@ -12,6 +13,7 @@ usinfo.addEventListener('click', (e) => {
     refinfo.classList.remove('bg-Third')
 
     userBox.classList.remove('hidden')
+    refBox.classList.add('hidden')
     subBox.classList.add('hidden')
 
     location.hash = '#user'
@@ -23,6 +25,7 @@ subinfo.addEventListener('click', (e) => {
     refinfo.classList.remove('bg-Third')
 
     userBox.classList.add('hidden')
+    refBox.classList.add('hidden')
     subBox.classList.remove('hidden')
 
     location.hash = "#subscription"
@@ -35,6 +38,7 @@ refinfo.addEventListener('click', (e) => {
 
     userBox.classList.add('hidden')
     subBox.classList.add('hidden')
+    refBox.classList.remove('hidden')
 
     location.hash = "#referrals"
 })
