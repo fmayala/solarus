@@ -8,9 +8,9 @@ let subBox = document.getElementById('subscription')
 let refBox = document.getElementById('referrals')
 
 usinfo.addEventListener('click', (e) => {
-    e.target.classList.add('bg-Third')
-    subinfo.classList.remove('bg-Third')
-    refinfo.classList.remove('bg-Third')
+    e.target.classList.add('text-Secondary')
+    subinfo.classList.remove('text-Secondary')
+    refinfo.classList.remove('text-Secondary')
 
     userBox.classList.remove('hidden')
     refBox.classList.add('hidden')
@@ -20,9 +20,9 @@ usinfo.addEventListener('click', (e) => {
 })
 
 subinfo.addEventListener('click', (e) => {
-    e.target.classList.add('bg-Third')
-    usinfo.classList.remove('bg-Third')
-    refinfo.classList.remove('bg-Third')
+    e.target.classList.add('text-Secondary')
+    usinfo.classList.remove('text-Secondary')
+    refinfo.classList.remove('text-Secondary')
 
     userBox.classList.add('hidden')
     refBox.classList.add('hidden')
@@ -32,9 +32,9 @@ subinfo.addEventListener('click', (e) => {
 })
 
 refinfo.addEventListener('click', (e) => {
-    e.target.classList.add('bg-Third')
-    usinfo.classList.remove('bg-Third')
-    subinfo.classList.remove('bg-Third')
+    e.target.classList.add('text-Secondary')
+    usinfo.classList.remove('text-Secondary')
+    subinfo.classList.remove('text-Secondary')
 
     userBox.classList.add('hidden')
     subBox.classList.add('hidden')
