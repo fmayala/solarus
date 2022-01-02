@@ -36,38 +36,44 @@ window.onload = async function () {
         if (location.pathname != '/') {
             location.replace("https://solarus.club/profile")
         } else {
-            let logName = document.getElementById('loggedIn')
-            let logLink = document.getElementById('loggedInLink')
+            if (location.pathname == "/") {
+                let logName = document.getElementById('loggedIn')
+                let logLink = document.getElementById('loggedInLink')
 
-            let loginBtn = document.getElementById('loginbtn')
-            let signupBtn = document.getElementById('signupbtn')
+                let loginBtn = document.getElementById('loginbtn')
+                let signupBtn = document.getElementById('signupbtn')
 
-            async function infoJSON() {
-                let formData = new FormData();
-                formData.append('access_token', localStorage.getItem('token'));
-            
-                const response = await fetch('https://api.solarus.club/api/v1/getuser', {
-                    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-                    mode: 'cors', // no-cors, *cors, same-origin
-                    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-                    credentials: 'same-origin', // include, *same-origin, omit
-                    redirect: 'follow', // manual, *follow, error
-                    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-                    body: formData // body data type must match "Content-Type" header
-                });
-                const data = await response.json();
-                return data;
+                async function infoJSON() {
+                    let formData = new FormData();
+                    formData.append('access_token', localStorage.getItem('token'));
+
+                    const response = await fetch('https://api.solarus.club/api/v1/getuser', {
+                        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                        mode: 'cors', // no-cors, *cors, same-origin
+                        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                        credentials: 'same-origin', // include, *same-origin, omit
+                        redirect: 'follow', // manual, *follow, error
+                        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                        body: formData // body data type must match "Content-Type" header
+                    });
+                    const data = await response.json();
+                    return data;
+                }
+
+                let dt = await infoJSON();
+
+                logName.textContent = dt.data.data_username
+
+
+                logName.classList.remove('hidden')
+                logLink.classList.remove('hidden')
+                loginBtn.classList.add('hidden')
+                signupBtn.classList.add('hidden')
             }
 
-            let dt = await infoJSON();
-
-            logName.textContent = dt.data.data_username
-
-
-            logName.classList.remove('hidden')
-            logLink.classList.remove('hidden')
-            loginBtn.classList.add('hidden')
-            signupBtn.classList.add('hidden')
+            if (location.pathname == "/profile/") {
+                
+            }
         }
     } else {
         if (location.pathname == '/') {

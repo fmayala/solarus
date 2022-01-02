@@ -10,6 +10,7 @@ let user = document.getElementById('username')
 let email = document.getElementById('email')
 let disUsername = document.getElementById('dusername')
 let otUsername = document.getElementById('ousername')
+let alpha = document.getElementById('alpha')
 
 
 // Error elements
@@ -62,14 +63,6 @@ user.addEventListener('input', (e) => {
   }
 })
 
-/*disUsername.addEventListener('input', (e) => {
-  if (e.target.value.length < 1) {
-    document.getElementById('discordError').textContent = "Username cannot be empty."
-  } else {
-    document.getElementById('discordError').textContent = ""
-  }
-})*/
-
 otUsername.addEventListener('input', (e) => {
   if (e.target.value.length < 1) {
     document.getElementById('onetapError').textContent = "Username cannot be empty."
@@ -78,6 +71,7 @@ otUsername.addEventListener('input', (e) => {
   }
 })
 
+// Signup request
 async function signupJSON(formdata) {
   const response = await fetch('https://api.solarus.club/api/v1/signup', {
       method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -123,18 +117,29 @@ document.getElementById('submit').addEventListener('click', async (e) => {
     globalerror = true;
   }
 
+  if (alpha.value == "") {
+    document.getElementById('alphaError').textContent = "Alpha code cannot be empty."
+    globalerror = true
+  }
+
   if (!pwerror && !eerror && !usererror && !globalerror) {
     let formData = new FormData();
     formData.append('username', user.value);
     formData.append('password', pw.value);
     formData.append('email', email.value);
     formData.append('ot_username', otUsername.value)
-
+    formData.append('alpha', alpha.value)
 
     const data = await signupJSON(formData);
 
     if (data.status == 200) {
       location.replace("https://solarus.club/verify?email=" + email.value)
+    } else {
+      // Scroll to top to error from API
+      window.scrollTo(0, 0);
+
+      // Show error from API
+      document.getElementById('globalError').textContent = data.message
     }
 
     console.log(data)
