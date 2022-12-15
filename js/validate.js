@@ -10,7 +10,7 @@ let user = document.getElementById('username')
 let email = document.getElementById('email')
 let disUsername = document.getElementById('dusername')
 let otUsername = document.getElementById('ousername')
-let alpha = document.getElementById('alpha')
+//let alpha = document.getElementById('alpha')
 
 
 // Error elements
@@ -117,10 +117,10 @@ document.getElementById('submit').addEventListener('click', async (e) => {
     globalerror = true;
   }
 
-  if (alpha.value == "") {
+  /*if (alpha.value == "") {
     document.getElementById('alphaError').textContent = "Alpha code cannot be empty."
     globalerror = true
-  }
+  }*/
 
   if (!pwerror && !eerror && !usererror && !globalerror) {
     let formData = new FormData();
@@ -128,7 +128,7 @@ document.getElementById('submit').addEventListener('click', async (e) => {
     formData.append('password', pw.value);
     formData.append('email', email.value);
     formData.append('ot_username', otUsername.value)
-    formData.append('alpha', alpha.value)
+    // formData.append('alpha', alpha.value)
 
     const data = await signupJSON(formData);
 
